@@ -1,22 +1,11 @@
 import React, { Component } from "react";
-import styles from "./styles";
 import { withNavigation } from "react-navigation";
-import { Image, ImageBackground, TouchableOpacity, View } from "react-native";
-import {
-  Container,
-  Header,
-  Content,
-  List,
-  ListItem,
-  Thumbnail,
-  Text,
-  Left,
-  Body,
-  Right,
-  Button
-} from "native-base";
 
-import SocketStore from "../../Stores/socketStore";
+import { ImageBackground, TouchableOpacity, View } from "react-native";
+import { Left, Right, Text } from "native-base";
+
+import styles from "./styles";
+
 class RestaurantObject extends Component {
   handlePress() {
     this.props.navigation.navigate("RestaurantDetail", {
@@ -25,19 +14,33 @@ class RestaurantObject extends Component {
   }
   render() {
     const { restaurant } = this.props;
-    console.log("ewrw", restaurant.name);
     return (
       <TouchableOpacity
         onPress={() => this.handlePress(restaurant)}
-        style={{ height: 220 }}
+        style={{
+          marginTop: 5,
+          height: 220,
+          marginLeft: 4,
+          marginRight: 4
+        }}
       >
         <ImageBackground
+          imageStyle={{ borderRadius: 6, opacity: 0.8 }}
           source={{
-            uri: "https://screenshotlayer.com/images/assets/placeholder.png"
+            uri:
+              restaurant.picture ||
+              "https://screenshotlayer.com/images/assets/placeholder.png"
           }}
-          style={{ width: "100%", height: "100%" }}
+          style={styles.cardImg}
+          style={{
+            width: "100%",
+            height: "100%"
+          }}
         >
-          <Text>{restaurant.name}</Text>
+          <View style={styles.bottomTitle}>
+            <Text style={styles.cardTitle}>{restaurant.name}</Text>
+            <Text style={styles.cardDesc}>{restaurant.description}</Text>
+          </View>
         </ImageBackground>
       </TouchableOpacity>
     );

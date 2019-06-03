@@ -1,21 +1,37 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Font, AppLoading } from "expo";
 
+import { Root } from "native-base";
+// Component
 import HomePage from "./Components/HomePage";
 
-import SocketStore from "./Stores/socketStore";
+import Nav from "./Navigation";
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      fontsAreLoaded: false
+    };
+  }
 
-export default class App extends React.Component {
+  componentWillMount() {
+    Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+    }).then(() => this.setState({ fontsAreLoaded: true }));
+  }
+
   render() {
-    return <HomePage />;
+    if (!this.state.fontsAreLoaded) {
+      return <AppLoading />;
+    }
+
+    return (
+      <Root>
+        <HomePage />
+      </Root>
+    );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+export default App;

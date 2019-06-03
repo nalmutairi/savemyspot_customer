@@ -1,28 +1,41 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
+  qContainer: {
     flex: 1,
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "#e0d5d5"
   },
   buttonContainer: {
-    flex: 1,
-    width: 100,
-    height: 100,
-    borderRadius: 100 / 2,
-    backgroundColor: "#3B8686",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: "#FFFFFF",
+    borderRadius: 30,
+    width: 250,
+    height: 45,
+    marginTop: 350,
+    flexDirection: "row",
+    alignItems: "stretch"
   },
   qCircle: {
-    width: 250,
-    height: 250,
-    borderRadius: 150 / 2,
-    backgroundColor: "#79BD9A",
+    width: 200,
+    height: 200,
+    borderRadius: 200 / 2,
+    backgroundColor: "rgba(255,250,240, 0.7)",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginTop: 20,
+    marginLeft: 30,
+    position: "absolute"
+  },
+  iqCircle: {
+    width: 165,
+    height: 165,
+    borderRadius: 165 / 2,
+    backgroundColor: "rgb(255,250,240)",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    position: "absolute"
   },
 
   joinCircle: {
@@ -39,8 +52,11 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center"
   },
+  circleTextColor: {
+    color: "rgb(157, 143, 136)"
+  },
   circleText: {
-    color: "white",
+    color: "rgb(157, 143, 136)",
     fontSize: 105,
     textAlign: "center"
   },
@@ -51,6 +67,21 @@ const styles = StyleSheet.create({
 
   rightMargin: {
     marginRight: 20
+  },
+  actionButton: {
+    width: 35,
+    height: 35,
+    backgroundColor: "rgb(241, 202,118)"
+  },
+
+  buttonText: {
+    color: "white"
+  },
+
+  numText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 29
   }
 });
 

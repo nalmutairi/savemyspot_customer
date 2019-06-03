@@ -23,6 +23,10 @@ class SocketStore {
   leaveQ(queueID) {
     this.socket.emit("leave q", queueID);
   }
+
+  back(restaurantID) {
+    this.socket.emit("back", restaurantID);
+  }
 }
 
 export default new SocketStore();
