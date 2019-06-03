@@ -1,26 +1,19 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import axios from "axios";
-import {
-  Container,
-  Tab,
-  Tabs,
-  Content,
-  Text,
-  Button,
-  View,
-  Input
-} from "native-base";
 
-import { TouchableOpacity } from "react-native";
-import { Modal } from "react-native-modal";
-import newsocket from "../../Stores/socketStore";
-import RestaurantStore from "../../Stores/restaurantStore";
-import SocketStore from "../../Stores/socketStore";
-import AuthStore from "../../Stores/authStore";
-import QueueModal from "../QueueModal";
+import { HeaderBackButton } from "react-navigation";
+import { Container, Content } from "native-base";
+import { ScrollView } from "react-native";
+
+//Components
 import Queue from "../Queue";
 import Menu from "../Menu";
+
+//Stores
+import socketStore from "../../Stores/socketStore";
+import restaurantStore from "../../Stores/restaurantStore";
+
 import styles from "./styles";
 
 const instance = axios.create({
@@ -36,18 +29,18 @@ class RestaurantDetail extends Component {
       currentQ: 0,
       position: null,
       guests: null,
-      restaurantID: this.props.navigation.getParam("restaurant", {}).id,
-      visibleModal: false
+      restaurantID: this.props.navigation.getParam("restaurant", {}).id
     };
   }
 
   componentDidMount() {
     this.fetchARestaurant();
+    restaurantStore.fetchARestaurant(this.state.restaurantID);
   }
 
   fetchARestaurant() {
     instance
-      .get("api/restaurant/detail/" + this.state.restaurantID)
+      .get("/restaurant/detail/" + this.state.restaurantID)
       .then(res => res.data)
       .then(restaurant =>
         this.setState({ restaurant: restaurant, loading: false })
@@ -56,26 +49,36 @@ class RestaurantDetail extends Component {
       .catch(err => console.error(err));
   }
 
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.getParam("restaurant", {}).name
-  });
+  handlePress() {
+    this.props.navigation.navigate("Login");
+  }
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam("restaurant", {}).name,
+      headerLeft: (
+        <HeaderBackButton
+          onPress={() => {
+            socketStore.back(navigation.getParam("restaurant", {}).id);
+            navigation.navigate("RestaurantList");
+          }}
+        />
+      )
+    };
+  };
 
   render() {
     const { restaurant, loading } = this.state;
+    const res1 = restaurantStore.restaurant;
     if (loading) {
       return <Content />;
     } else {
       return (
-        <Container>
-          <Tabs>
-            <Tab heading="Queue">
-              <Queue restaurant={restaurant} />
-            </Tab>
-            <Tab heading="Menu">
-              <Menu category={restaurant.category} />
-            </Tab>
-          </Tabs>
-        </Container>
+        <ScrollView>
+          <Container>
+            <Queue restaurant={restaurant} />
+            <Menu category={restaurant.category} />
+          </Container>
+        </ScrollView>
       );
     }
   }

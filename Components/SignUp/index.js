@@ -1,17 +1,15 @@
 import React, { Component } from "react";
-import { observer } from "mobx-react";
 import { withNavigation } from "react-navigation";
 
-// NativeBase Components
-import { Item, Input, Button, Text, Container, Icon } from "native-base";
-import { Card, Image } from "react-native-elements";
+import { ImageBackground, View } from "react-native";
+import { Button, Container, Icon, Input, Item, Text } from "native-base";
+import { Card } from "react-native-elements";
 
-// Store
+import Gradient from "react-native-css-gradient";
+// Stores
 import authStore from "../../Stores/authStore";
 
-//style
-import styles from "./styles";
-
+import styles from "../Login/styles.js";
 class SignUp extends Component {
   constructor(props) {
     super(props);
@@ -26,61 +24,88 @@ class SignUp extends Component {
 
   render() {
     return (
-      <Container style={styles.container}>
-        <Card>
-          <Item>
-            <Icon active type="Entypo" name="user" />
+      <ImageBackground
+        imageStyle={{ opacity: 0.2 }}
+        style={{ width: "100%", height: "100%" }}
+        source={{
+          uri:
+            "http://inspiredboy.com/uploads/201509/full/lovely-food-background-vector-map-1-749a15f78cd04f60a511bf447d32b20e.jpg"
+        }}
+        style={styles.cardImg}
+        style={{
+          width: "100%",
+          height: "100%"
+        }}
+      >
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+          <Text style={styles.formtitle}>Sign Up</Text>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            margin: 30,
+            justifyContent: "center",
+            alignItems: "stretch"
+          }}
+        >
+          <Item style={styles.formfield}>
+            <Icon active style={styles.red} type="Entypo" name="user" />
             <Input
+              placeholderTextColor="gray"
               placeholder="Username"
               autoCapitalize="none"
               onChangeText={username => this.setState({ username })}
             />
           </Item>
-          <Item>
-            <Icon active type="Entypo" name="key" />
+          <Item style={styles.formfield}>
+            <Icon active style={styles.red} type="Entypo" name="key" />
             <Input
+              placeholderTextColor="gray"
               placeholder="Password"
               autoCapitalize="none"
               secureTextEntry={true}
               onChangeText={password => this.setState({ password })}
             />
           </Item>
-          <Item>
-            <Icon active type="Entypo" name="edit" />
+          <Item style={styles.formfield}>
+            <Icon active style={styles.red} type="Entypo" name="edit" />
             <Input
+              placeholderTextColor="gray"
               placeholder="First Name"
               autoCapitalize="none"
               onChangeText={first_name => this.setState({ first_name })}
             />
           </Item>
-          <Item>
-            <Icon active type="Entypo" name="edit" />
+          <Item style={styles.formfield}>
+            <Icon active style={styles.red} type="Entypo" name="edit" />
             <Input
+              placeholderTextColor="gray"
               placeholder="Last Name"
               autoCapitalize="none"
               onChangeText={last_name => this.setState({ last_name })}
             />
           </Item>
-          <Item>
-            <Icon active type="Entypo" name="email" />
+          <Item style={styles.formfield}>
+            <Icon active style={styles.red} type="Entypo" name="email" />
             <Input
+              placeholderTextColor="gray"
               placeholder="Email Adress"
               autoCapitalize="none"
               onChangeText={email => this.setState({ email })}
             />
           </Item>
           <Button
+            style={styles.formButton}
             full
-            danger
             onPress={() =>
               authStore.registerUser(this.state, this.props.navigation)
             }
           >
-            <Text>SignUp</Text>
+            <Text>Sign Up</Text>
           </Button>
-        </Card>
-      </Container>
+        </View>
+      </ImageBackground>
     );
   }
 }
-export default withNavigation(observer(SignUp));
+export default withNavigation(SignUp);

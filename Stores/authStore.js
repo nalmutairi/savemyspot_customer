@@ -2,14 +2,15 @@ import { decorate, observable } from "mobx";
 import axios from "axios";
 import { AsyncStorage } from "react-native";
 import jwt_decode from "jwt-decode";
-
+import { withNavigation } from "react-navigation";
 const instance = axios.create({
-  baseURL: "http:127.0.0.1:8000/"
+  baseURL: "http://127.0.0.1:8000/"
 });
 
 class AuthStore {
   constructor() {
     this.user = null;
+    this.spots = [];
     this.loading = true;
     this.checkForToken();
   }
@@ -26,6 +27,7 @@ class AuthStore {
       return AsyncStorage.removeItem("jwtToken").then(() => {
         delete axios.defaults.headers.common["Authorization"];
         this.user = null;
+        this.spots = null;
         this.loading = false;
       });
     }
@@ -34,7 +36,7 @@ class AuthStore {
   registerUser(userData, navigation) {
     console.log(userData);
     instance
-      .post("api/signup/", userData)
+      .post("signup/", userData)
       .then(res => {
         this.loginUser(userData, navigation);
       })
@@ -43,11 +45,12 @@ class AuthStore {
 
   loginUser(userData, navigation) {
     instance
-      .post("api/signin/", userData)
+      .post("signin/", userData)
       .then(res => res.data)
       .then(user => this.setCurrentUser(user.token))
       .then(() => {
-        navigation.replace("RestaurantList");
+        this.getMySpot();
+        navigation.navigate("RestaurantList");
       })
       .catch(err => console.error(err));
   }
@@ -74,10 +77,18 @@ class AuthStore {
       })
       .catch(err => console.error(err));
   };
+
+  getMySpot() {
+    instance
+      .get("/queue/list/")
+      .then(res => res.data)
+      .then(spots => (this.spots = spots));
+  }
 }
 
 decorate(AuthStore, {
   user: observable,
+  spots: observable,
   loading: observable
 });
 

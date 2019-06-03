@@ -5,13 +5,13 @@ import { View } from "react-native";
 import { Container, Header } from "native-base";
 
 // Navigation
-import BottomNavTab from "../../Navigation/BottomNavTab";
+import Nav from "../../Navigation/";
 
 class HomePage extends Component {
   render() {
     return (
       <Container>
-        <BottomNavTab />
+        <Nav />
       </Container>
     );
   }
