@@ -12,6 +12,8 @@ import Spot from "./spot.js";
 import restaurantStore from "../../Stores/restaurantStore";
 import authStore from "../../Stores/authStore";
 
+import styles from "./styles.js";
+
 class RestaurantList extends Component {
   componentDidMount() {
     restaurantStore.fetchAllRestaurants();
@@ -24,14 +26,14 @@ class RestaurantList extends Component {
       headerRight:
         authStore.user !== null ? (
           <Icon
-            style={{ marginRight: 10 }}
+            style={styles.accountIcon}
             onPress={() => authStore.logoutUser(navigation)}
             name="logout"
             type="SimpleLineIcons"
           />
         ) : (
           <Icon
-            style={{ marginRight: 10 }}
+            style={styles.accountIcon}
             onPress={() => navigation.navigate("Login")}
             name="login"
             type="SimpleLineIcons"
@@ -62,7 +64,7 @@ class RestaurantList extends Component {
 
     return (
       <Content>
-        <ScrollView style={{ backgroundColor: "rgba(7, 183, 10, 0.03)" }}>
+        <ScrollView>
           <List>{SpotList}</List>
           <View
             style={{

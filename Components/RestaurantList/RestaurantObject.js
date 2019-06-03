@@ -17,12 +17,7 @@ class RestaurantObject extends Component {
     return (
       <TouchableOpacity
         onPress={() => this.handlePress(restaurant)}
-        style={{
-          marginTop: 5,
-          height: 220,
-          marginLeft: 4,
-          marginRight: 4
-        }}
+        style={styles.card}
       >
         <ImageBackground
           imageStyle={{ borderRadius: 6, opacity: 0.8 }}

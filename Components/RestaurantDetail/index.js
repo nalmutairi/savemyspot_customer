@@ -14,8 +14,6 @@ import Menu from "../Menu";
 import socketStore from "../../Stores/socketStore";
 import restaurantStore from "../../Stores/restaurantStore";
 
-import styles from "./styles";
-
 const instance = axios.create({
   baseURL: "http:127.0.0.1:8000/"
 });

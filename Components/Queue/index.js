@@ -9,7 +9,7 @@ import Spinner from "./spinner.js";
 import socketStore from "../../Stores/socketStore";
 import authStore from "../../Stores/authStore";
 
-import styles from "../RestaurantDetail/styles";
+import styles from "./styles.js";
 
 import { Button, Item, Text, View } from "native-base";
 import { Image, TouchableOpacity } from "react-native";
@@ -80,10 +80,10 @@ class Queue extends Component {
           <Button
             rounded
             light
-            style={{ marginTop: 300, backgroundColor: "#f7ca67" }}
+            style={styles.queueButtons}
             onPress={() => this.leaveQ()}
           >
-            <Text style={{ color: "white" }}>Leave Q</Text>
+            <Text style={styles.white}>Leave Q</Text>
           </Button>
         );
       } else {
@@ -99,12 +99,12 @@ class Queue extends Component {
         <Button
           rounded
           light
-          style={{ marginTop: 300, backgroundColor: "#f7ca67" }}
+          style={styles.queueButtons}
           onPress={() => {
             this.props.navigation.navigate("Login");
           }}
         >
-          <Text style={{ color: "white" }}>Login to Join Q</Text>
+          <Text style={styles.white}>Login to Join Q</Text>
         </Button>
       );
     }
@@ -114,29 +114,15 @@ class Queue extends Component {
     const { restaurant } = this.props;
 
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
+      <View style={styles.qContainer}>
         <Image
           source={{
             uri:
               restaurant.picture ||
               "https://screenshotlayer.com/images/assets/placeholder.png"
           }}
-          style={{
-            flex: 1,
-            opacity: 0.9,
-            width: "100%",
-            height: "35%",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
+          style={styles.img}
         />
-
         <View style={styles.qCircle}>
           <View style={styles.iqCircle}>{this.getQueueNumber()}</View>
           <View>{this.getQueueOptions()}</View>

@@ -1,6 +1,13 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  form: {
+    flex: 1,
+    margin: 30,
+    justifyContent: "center",
+    alignItems: "stretch"
+  },
+
   formfield: {
     backgroundColor: "transparent",
     marginTop: 10,
@@ -27,6 +34,12 @@ const styles = StyleSheet.create({
 
   red: {
     color: "rgb(163,35,58)"
+  },
+
+  signupOption: {
+    justifyContent: "center",
+    marginTop: 20,
+    flexDirection: "row"
   }
 });
 

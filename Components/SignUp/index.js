@@ -27,15 +27,7 @@ class SignUp extends Component {
       <ImageBackground
         imageStyle={{ opacity: 0.2 }}
         style={{ width: "100%", height: "100%" }}
-        source={{
-          uri:
-            "http://inspiredboy.com/uploads/201509/full/lovely-food-background-vector-map-1-749a15f78cd04f60a511bf447d32b20e.jpg"
-        }}
-        style={styles.cardImg}
-        style={{
-          width: "100%",
-          height: "100%"
-        }}
+        source={require("../../foodbackground.jpg")}
       >
         <View style={{ alignItems: "center", justifyContent: "center" }}>
           <Text style={styles.formtitle}>Sign Up</Text>

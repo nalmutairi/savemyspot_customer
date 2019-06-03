@@ -40,7 +40,7 @@ class Spinner extends Component {
   render() {
     return (
       <View style={{ flexDirection: "row", marginTop: 300 }}>
-        <Icon style={{ color: "white" }} active type="Entypo" name="user" />
+        <Icon style={styles.white} active type="Entypo" name="user" />
         <Button style={styles.actionButton} onPress={() => this.decrement()}>
           <Text style={styles.buttonText}>-</Text>
         </Button>
