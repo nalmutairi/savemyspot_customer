@@ -6,17 +6,15 @@ import { withNavigation } from "react-navigation";
 import Spinner from "./spinner.js";
 
 //Stores
-import socketStore from "../../Stores/socketStore";
 import authStore from "../../Stores/authStore";
 
-import styles from "../RestaurantDetail/styles";
+import styles from "./styles";
 
 import { Button, Item, Text, View } from "native-base";
 import { Image, TouchableOpacity } from "react-native";
 
 class Queue extends Component {
   constructor(props) {
-    _isMounted = false;
     super(props);
     this.state = {
       currentQ: null,
@@ -24,36 +22,7 @@ class Queue extends Component {
     };
   }
 
-  componentDidMount() {
-    this.restaurantRequest();
-    socketStore.socket.on("q info", data => {
-      this.setState({ currentQ: data.restaurantQ });
-    });
-    socketStore.socket.on("user spot", data => {
-      this.setState({ position: data.spot });
-    });
-    socketStore.socket.on("update queue", () => {
-      this.restaurantRequest();
-    });
-  }
-
-  componentWillUnmount() {
-    socketStore.socket.off("q info");
-    socketStore.socket.off("user spot");
-    socketStore.socket.off("update queue");
-  }
-
-  restaurantRequest() {
-    if (authStore.user) {
-      socketStore.getRestaurant(this.props.restaurant, authStore.user.user_id);
-    } else {
-      socketStore.getRestaurant(this.props.restaurant, null);
-    }
-  }
-
-  leaveQ() {
-    socketStore.leaveQ(this.state.position);
-  }
+  componentDidMount() {}
 
   getQueueNumber() {
     if (this.state.position) {
@@ -80,10 +49,10 @@ class Queue extends Component {
           <Button
             rounded
             light
-            style={{ marginTop: 300, backgroundColor: "#f7ca67" }}
+            style={styles.queueButtons}
             onPress={() => this.leaveQ()}
           >
-            <Text style={{ color: "white" }}>Leave Q</Text>
+            <Text style={styles.white}>Leave Q</Text>
           </Button>
         );
       } else {
@@ -99,12 +68,12 @@ class Queue extends Component {
         <Button
           rounded
           light
-          style={{ marginTop: 300, backgroundColor: "#f7ca67" }}
+          style={styles.queueButtons}
           onPress={() => {
             this.props.navigation.navigate("Login");
           }}
         >
-          <Text style={{ color: "white" }}>Login to Join Q</Text>
+          <Text style={styles.white}>Login to Join Q</Text>
         </Button>
       );
     }
@@ -114,29 +83,15 @@ class Queue extends Component {
     const { restaurant } = this.props;
 
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
+      <View style={styles.qContainer}>
         <Image
           source={{
             uri:
               restaurant.picture ||
               "https://screenshotlayer.com/images/assets/placeholder.png"
           }}
-          style={{
-            flex: 1,
-            opacity: 0.9,
-            width: "100%",
-            height: "35%",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
+          style={styles.img}
         />
-
         <View style={styles.qCircle}>
           <View style={styles.iqCircle}>{this.getQueueNumber()}</View>
           <View>{this.getQueueOptions()}</View>

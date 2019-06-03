@@ -4,7 +4,6 @@ import { Button, Content, Icon, Text } from "native-base";
 import { View } from "react-native";
 
 //Stores
-import socketStore from "../../Stores/socketStore";
 
 import styles from "./styles.js";
 
@@ -22,7 +21,6 @@ class Spinner extends Component {
 
   increment() {
     var num = this.state.numOfGuests;
-    console.log("num", this.state.numOfGuests);
     if (num < this.state.max) {
       num = num + 1;
       this.setState({ numOfGuests: num });
@@ -40,7 +38,7 @@ class Spinner extends Component {
   render() {
     return (
       <View style={{ flexDirection: "row", marginTop: 300 }}>
-        <Icon style={{ color: "white" }} active type="Entypo" name="user" />
+        <Icon style={styles.white} active type="Entypo" name="user" />
         <Button style={styles.actionButton} onPress={() => this.decrement()}>
           <Text style={styles.buttonText}>-</Text>
         </Button>
@@ -53,13 +51,7 @@ class Spinner extends Component {
           rounded
           light
           style={{ marginLeft: 15 }}
-          onPress={() =>
-            socketStore.addToQ(
-              this.props.user,
-              this.props.restaurant,
-              this.state.numOfGuests
-            )
-          }
+          //onPress={...}
         >
           <Text>Join Q</Text>
         </Button>

@@ -11,10 +11,7 @@ import Queue from "../Queue";
 import Menu from "../Menu";
 
 //Stores
-import socketStore from "../../Stores/socketStore";
 import restaurantStore from "../../Stores/restaurantStore";
-
-import styles from "./styles";
 
 const instance = axios.create({
   baseURL: "http:127.0.0.1:8000/"
@@ -52,19 +49,17 @@ class RestaurantDetail extends Component {
   handlePress() {
     this.props.navigation.navigate("Login");
   }
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: navigation.getParam("restaurant", {}).name,
-      headerLeft: (
-        <HeaderBackButton
-          onPress={() => {
-            socketStore.back(navigation.getParam("restaurant", {}).id);
-            navigation.navigate("RestaurantList");
-          }}
-        />
-      )
-    };
-  };
+
+  // static navigationOptions = ({ navigation }) => {
+  //   return {
+  //     title: navigation.getParam("restaurant", {}).name,
+  //     headerLeft: (
+  //       <HeaderBackButton
+  //       onPress={...}
+  //       />
+  //     )
+  //   };
+  // };
 
   render() {
     const { restaurant, loading } = this.state;
