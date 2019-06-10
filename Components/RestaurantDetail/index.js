@@ -57,7 +57,7 @@ class RestaurantDetail extends Component {
         <HeaderBackButton
           onPress={() => {
             socketStore.back(navigation.getParam("restaurant", {}).id);
-            navigation.navigate("RestaurantList");
+            navigation.replace("RestaurantList");
           }}
         />
       )

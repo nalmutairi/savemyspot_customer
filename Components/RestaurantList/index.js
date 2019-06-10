@@ -7,6 +7,7 @@ import { ScrollView, View } from "react-native";
 //Components
 import RestaurantObject from "./RestaurantObject";
 import Spot from "./spot.js";
+import LoginButton from "../LoginButton";
 
 //Stores
 import restaurantStore from "../../Stores/restaurantStore";
@@ -23,22 +24,7 @@ class RestaurantList extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: "Save My Spot",
-      headerRight:
-        authStore.user !== null ? (
-          <Icon
-            style={styles.accountIcon}
-            onPress={() => authStore.logoutUser(navigation)}
-            name="logout"
-            type="SimpleLineIcons"
-          />
-        ) : (
-          <Icon
-            style={styles.accountIcon}
-            onPress={() => navigation.navigate("Login")}
-            name="login"
-            type="SimpleLineIcons"
-          />
-        )
+      headerRight: <LoginButton navigation={navigation} />
     };
   };
 

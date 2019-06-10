@@ -16,7 +16,6 @@ import { Image, TouchableOpacity } from "react-native";
 
 class Queue extends Component {
   constructor(props) {
-    _isMounted = false;
     super(props);
     this.state = {
       currentQ: null,

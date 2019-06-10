@@ -74,6 +74,31 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "rgb(163,35,58)",
     marginLeft: 20
+  },
+
+  outerCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: "rgba(255,250,240, 0.7)",
+    alignItems: "center",
+    justifyContent: "center",
+    top: 10,
+    right: 20,
+    position: "absolute"
+  },
+  innerCircle: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: "rgb(255,250,240)",
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  qNum: {
+    color: "rgb(157, 143, 136)",
+    fontWeight: "bold"
   }
 });
 

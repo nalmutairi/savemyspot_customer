@@ -32,6 +32,11 @@ class RestaurantObject extends Component {
             height: "100%"
           }}
         >
+          <View style={styles.outerCircle}>
+            <View style={styles.innerCircle}>
+              <Text style={styles.qNum}>{restaurant.queue}</Text>
+            </View>
+          </View>
           <View style={styles.bottomTitle}>
             <Text style={styles.cardTitle}>{restaurant.name}</Text>
             <Text style={styles.cardDesc}>{restaurant.description}</Text>
