@@ -15,7 +15,7 @@ import socketStore from "../../Stores/socketStore";
 import restaurantStore from "../../Stores/restaurantStore";
 
 const instance = axios.create({
-  baseURL: "http:127.0.0.1:8000/"
+  baseURL: "https://savemyspot-django.codeunicorn.io/"
 });
 
 class RestaurantDetail extends Component {
