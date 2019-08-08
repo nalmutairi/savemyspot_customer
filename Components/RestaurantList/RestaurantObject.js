@@ -14,6 +14,7 @@ class RestaurantObject extends Component {
   }
   render() {
     const { restaurant } = this.props;
+
     return (
       <TouchableOpacity
         onPress={() => this.handlePress(restaurant)}

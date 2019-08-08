@@ -13,8 +13,6 @@ import LoginButton from "../LoginButton";
 import restaurantStore from "../../Stores/restaurantStore";
 import authStore from "../../Stores/authStore";
 
-import styles from "./styles.js";
-
 class RestaurantList extends Component {
   componentDidMount() {
     restaurantStore.fetchAllRestaurants();
@@ -43,6 +41,7 @@ class RestaurantList extends Component {
     }
 
     let spots = authStore.spots;
+
     let SpotList;
     if (spots) {
       SpotList = spots.map(spot => <Spot spot={spot} key={spot.id} />);

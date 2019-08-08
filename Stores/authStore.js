@@ -4,6 +4,7 @@ import { AsyncStorage } from "react-native";
 import jwt_decode from "jwt-decode";
 import { withNavigation } from "react-navigation";
 const instance = axios.create({
+  // baseURL: "http://127.0.0.1:8000/"
   baseURL: "https://savemyspot-django.codeunicorn.io/"
 });
 
@@ -80,9 +81,10 @@ class AuthStore {
 
   getMySpot() {
     instance
-      .get("/queue/list/")
+      .get("user/queue/")
       .then(res => res.data)
-      .then(spots => (this.spots = spots));
+      .then(spots => (this.spots = spots))
+      .catch(err => console.error(err));
   }
 }
 
