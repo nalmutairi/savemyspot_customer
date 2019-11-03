@@ -18,7 +18,6 @@ import styles from "./styles.js";
 class RestaurantList extends Component {
   componentDidMount() {
     restaurantStore.fetchAllRestaurants();
-    authStore.getMySpot();
   }
 
   static navigationOptions = ({ navigation }) => {
