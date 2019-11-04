@@ -49,7 +49,6 @@ class AuthStore {
       .then(res => res.data)
       .then(user => this.setCurrentUser(user.token))
       .then(() => {
-        this.getMySpot();
         navigation.navigate("RestaurantList");
       })
       .catch(err => console.error(err));
@@ -77,13 +76,6 @@ class AuthStore {
       })
       .catch(err => console.error(err));
   };
-
-  getMySpot() {
-    instance
-      .get("/queue/list/")
-      .then(res => res.data)
-      .then(spots => (this.spots = spots));
-  }
 }
 
 decorate(AuthStore, {
